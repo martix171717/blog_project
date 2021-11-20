@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for, flash
 from blog import app
 from blog.models import Entry, db
 from blog.forms import EntryForm
@@ -20,6 +20,8 @@ def create_entry():
                is_published=form.is_published.data)
            db.session.add(entry)
            db.session.commit()
+           flash('Post został dodany pomyślnie!')
+           return redirect(url_for("index"))
        else:
            errors = form.errors
    return render_template("entry_form.html", form=form, errors=errors)

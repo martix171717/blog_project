@@ -43,6 +43,20 @@
      </form>
    </div>
  </nav>
+ <div class="container">
+       {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-info mt-3" role="alert">
+                {{ message }}
+              <button type="button" class="close" onclick="this.parentElement.style.display='none';">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+            {% endfor %}
+          {% endif %}
+       {% endwith %}
+  </div>
 
  <main role="main" class="container">
 
