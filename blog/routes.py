@@ -25,3 +25,18 @@ def create_entry():
        else:
            errors = form.errors
    return render_template("entry_form.html", form=form, errors=errors)
+
+@app.route("/edit-post/<int:entry_id>", methods=["GET", "POST"])
+def edit_entry(entry_id):
+   entry = Entry.query.filter_by(id=entry_id).first_or_404()
+   form = EntryForm(obj=entry)
+   errors = None
+   if request.method == 'POST':
+       if form.validate_on_submit():
+           form.populate_obj(entry)
+           db.session.commit()
+           flash('Post został zmieniony pomyślnie!')
+           return redirect(url_for("index"))
+       else:
+           errors = form.errors
+   return render_template("entry_form.html", form=form, errors=errors)
