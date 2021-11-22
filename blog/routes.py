@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash, session
 from blog import app
 from blog.models import Entry, db
-from blog.forms import EntryForm, LoginForm
+from blog.forms import EntryForm, LoginForm, DeleteForm
 import functools
 
 @app.route("/")
@@ -19,11 +19,17 @@ def create_edit_entry(form, entry_id=None, entry=None):
             )
             db.session.add(entry)
             db.session.commit()
-            flash('Post został dodany pomyślnie!')
+            if form.is_published.data==True:
+                flash('Post został dodany pomyślnie!')
+            else:
+                flash('Szkic został dodany pomyślnie!')  
         else:
             form.populate_obj(entry)
             db.session.commit()
-            flash('Post został zmieniony pomyślnie!')
+            if form.is_published.data==True:
+                flash('Post został zmieniony pomyślnie!')
+            else:
+                flash('Szkic został zmieniony pomyślnie!')
     else:
         return form.errors
 
@@ -84,3 +90,18 @@ def logout():
         flash('Zostałeś poprawnie wylogowany!', 'success')
     return redirect(url_for('index'))
 
+@app.route("/drafts/", methods=['GET'])
+@login_required
+def list_drafts():
+   drafts = Entry.query.filter_by(is_published=False).order_by(Entry.pub_date.desc())
+   return render_template("drafts.html", drafts=drafts)
+
+
+@app.route("/delete-post/<int:entry_id>", methods=["POST"])
+@login_required
+def delete_entry(entry_id):
+    entry = Entry.query.filter_by(id=entry_id).first_or_404()
+    db.session.delete(entry)
+    db.session.commit()
+    flash('Post został skasowany pomyślnie', 'success')
+    return redirect(url_for('index'))

@@ -22,18 +22,22 @@
 
 <body>
  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+
    <a class="navbar-brand" href="{{ url_for('index')}}">Mój blog</a>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-     aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+     aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation" aria-current="page">
      <span class="navbar-toggler-icon"></span>
    </button>
-   <br>
-   <a class="navbar-brand" href="{{ url_for('create_entry')}}">Dodaj nowy wpis</a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-     aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-     <span class="navbar-toggler-icon"></span>
-   </button>   
-
+   <div class="collapse navbar-collapse" id="navbarNav">
+     <ul class="navbar-nav">
+      <li class="nav-item">
+       <a class="nav-link" href="{{ url_for('list_drafts')}}">Szkice</a>    
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" aria-current="page" href="{{ url_for('create_entry')}}">Dodaj nowy wpis</a> 
+      </li>
+     </ul>
+   </div>
    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
      <ul class="navbar-nav mr-auto">
      </ul>

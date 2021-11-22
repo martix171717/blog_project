@@ -16,10 +16,14 @@ class LoginForm(FlaskForm):
 
    def validate_username(self, field):
        if field.data != Config.ADMIN_USERNAME:
-           raise ValidationError("Invalid username")
+           raise ValidationError("Niepoprawny login")
        return field.data
 
    def validate_password(self, field):
        if field.data != Config.ADMIN_PASSWORD:
            raise ValidationError("Invalid password")
        return field.data
+
+class DeleteForm(FlaskForm):
+    def delete_entry(self):
+        return redirect(url_for('delete_entry', entry_id=entry_id))
