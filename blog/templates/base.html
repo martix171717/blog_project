@@ -43,10 +43,10 @@
      </form>
      {% if session.logged_in %}
        <form class="form-inline my-2 my-lg-0" action="{{ url_for('logout') }}" method="POST">
-         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Wyloguj</button>
+         <button class="btn btn-secondary my-2 my-sm-0 ml-2" type="submit">Wyloguj</button>
        </form>
      {% else %}
-       <a href="{{ url_for('login') }}" class="btn btn-secondary my-2 my-lg-0 ml-3">Zaloguj</a>
+       <a href="{{ url_for('login') }}" class="btn btn-secondary my-2 my-lg-0 ml-2">Zaloguj</a>
      {% endif %}
    </div>
  </nav>
