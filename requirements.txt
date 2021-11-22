@@ -6,3 +6,4 @@ python-dotenv
 flask-shell-ipython
 flask-wtf==0.14.3
 gunicorn==20.0.4
+Faker==9.8.2
