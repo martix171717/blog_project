@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Wyniki wyszukiwnia postów na blogu</h1>
+        <p class="lead">Wyniki dla zapytania: {{ search_query }}</p>
+    </div>
+    {% for post in posts %}
+    <div class="col-lg-3 col-md-6 mb-4">
+        <h2 class="d-inline-block">{{ post.title }}</h2>
+        <p>{{ post.pub_date.strftime('%Y-%m-%d') }}</p>
+        <p>
+            {{ post.body|truncate(100, true) }}
+        </p>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
