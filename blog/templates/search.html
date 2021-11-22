@@ -7,16 +7,22 @@
         <h1 class="mt-5">Wyniki wyszukiwnia postów na blogu</h1>
         <p class="lead">Wyniki dla zapytania: {{ search_query }}</p>
     </div>
-    {% for post in posts %}
+    {% for post in posts%}
     <div class="col-lg-3 col-md-6 mb-4">
-        <h2 class="d-inline-block">{{ post.title }}</h2>
-        <p>{{ post.pub_date.strftime('%Y-%m-%d') }}</p>
-        <p>
-            {{ post.body|truncate(100, true) }}
-        </p>
+      <div class="card h-100">
+         <img class="card-img-top" src="https://picsum.photos/300/100" alt="">
+           <div class="card-body">
+               <h4 class="card-title">{{post.title}}</h4>
+               <p class="card-text"><i>{{ post.pub_date.strftime('%Y-%m-%d') }}</i></p>
+               <p class="card-text">{{post.body|truncate(100, true)}}</p>
+             </div>
+             <div class="card-footer text-muted text-center">
+                 <a href="#" class="btn btn-outline-dark mb-3 pull-right">Czytaj dalej</a>
+             </div>
+         </div>
     </div>
-    {% endfor %}
 
+    {% endfor %}
 </div>
 
 {% endblock %}
