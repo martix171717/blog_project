@@ -123,3 +123,10 @@ def search():
     else:
         errors = form.errors
     return render_template("homepage.html", form=form, errors=errors)
+
+
+@app.route("/post/<int:entry_id>", methods=['GET'])
+def entry_details(entry_id):
+      entry = Entry.query.filter_by(id=entry_id).first_or_404()
+      return render_template("details.html", entry=entry)
+

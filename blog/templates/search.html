@@ -17,7 +17,7 @@
                <p class="card-text">{{post.body|truncate(100, true)}}</p>
              </div>
              <div class="card-footer text-muted text-center">
-                 <a href="#" class="btn btn-outline-dark mb-3 pull-right">Czytaj dalej</a>
+                 <a href="{{ url_for('entry_details', entry_id=post.id) }}" class="btn btn-outline-dark mb-3 pull-right">Czytaj dalej</a>
              </div>
          </div>
     </div>
