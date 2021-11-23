@@ -29,8 +29,9 @@
          {% endif %}
     
      <p class="card-text text-justify">
-       {{ post.body}}
+       {{ post.body|truncate(500, true)}}
      </p>
+     <a href="{{ url_for('entry_details', entry_id=post.id) }}" class="btn btn-outline-dark mb-3 pull-right">Czytaj dalej</a>
      </div>
      <div class="card-footer text-muted">
        Opublikowano: <i>{{ post.pub_date.strftime('%Y-%m-%d') }}</i>
